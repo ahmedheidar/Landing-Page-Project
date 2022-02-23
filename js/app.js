@@ -33,16 +33,16 @@ const sections = document.querySelectorAll('section');
 function navigateTo(href) {
     switch (href) {
         case "Section1":
-            document.getElementById('section1').scrollIntoView({behavior: "smooth"});break;
+            document.getElementById('section1').scrollIntoView({ behavior: "smooth" }); break;
         case "Section2":
-            document.getElementById('section2').scrollIntoView({behavior: "smooth"});break;
+            document.getElementById('section2').scrollIntoView({ behavior: "smooth" }); break;
         case "Section3":
-            document.getElementById('section3').scrollIntoView({behavior: "smooth"});break;
+            document.getElementById('section3').scrollIntoView({ behavior: "smooth" }); break;
         case "Section4":
-            document.getElementById('section4').scrollIntoView({behavior: "smooth"});break;
+            document.getElementById('section4').scrollIntoView({ behavior: "smooth" }); break;
     }
 }
-function concatinator(sectionName){
+function concatinator(sectionName) {
     let x = sectionName.split(" ");
     return x[0].concat(x[1]);
 }
@@ -96,3 +96,37 @@ for (let anchor of anchors) {
     });
 }
 // Set sections as active
+window.addEventListener('scroll',function sectionActivator() {
+    const sec1 = Math.abs(document.getElementById('section1').getBoundingClientRect().top);
+    const sec2 = Math.abs(document.getElementById('section2').getBoundingClientRect().top);
+    const sec3 = Math.abs(document.getElementById('section3').getBoundingClientRect().top);
+    const sec4 = Math.abs(document.getElementById('section4').getBoundingClientRect().top);
+    const min = Math.min(sec1, sec2, sec3, sec4);
+
+    switch (min) {
+        case sec1:
+            document.getElementById('section1').classList.add("your-active-class");
+            document.getElementById('section2').classList.remove("your-active-class");
+            document.getElementById('section3').classList.remove("your-active-class");
+            document.getElementById('section4').classList.remove("your-active-class");
+            break;
+        case sec2:
+            document.getElementById('section1').classList.remove("your-active-class");
+            document.getElementById('section2').classList.add("your-active-class");
+            document.getElementById('section3').classList.remove("your-active-class");
+            document.getElementById('section4').classList.remove("your-active-class");
+            break;
+        case sec3:
+            document.getElementById('section1').classList.remove("your-active-class");
+            document.getElementById('section2').classList.remove("your-active-class");
+            document.getElementById('section3').classList.add("your-active-class");
+            document.getElementById('section4').classList.remove("your-active-class");
+            break;
+        case sec4:
+            document.getElementById('section1').classList.remove("your-active-class");
+            document.getElementById('section2').classList.remove("your-active-class");
+            document.getElementById('section3').classList.remove("your-active-class");
+            document.getElementById('section4').classList.add("your-active-class");
+            break;
+    }
+});
