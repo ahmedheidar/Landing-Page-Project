@@ -23,6 +23,8 @@
  * 
 */
 
+const sections = document.querySelectorAll('section');
+console.log(sections);
 
 /**
  * End Global Variables
@@ -40,7 +42,17 @@
 
 // build the nav
 
-
+document.addEventListener('DOMContentLoaded',function(){
+    const fragment = document.createDocumentFragment();
+    for(const section of sections){
+        let li = document.createElement('li');
+        const sectionName = section.getAttribute('data-nav');
+        li.innerHTML = sectionName;
+        li.classList.add('menu__link');
+        fragment.appendChild(li);
+    }
+    document.getElementById('navbar__list').append(fragment);
+});
 // Add class 'active' to section when near top of viewport
 
 
