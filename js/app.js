@@ -72,7 +72,20 @@ function buildNavBar() {
 }
 
 // Add class 'active' to section when near top of viewport
+function NavBarActive() {
+    const navBarItems = document.querySelectorAll('li');
 
+
+    for (const item of navBarItems) {
+        item.addEventListener('click', function (e) {
+            const li = document.querySelector('li.active');
+            if(li!==null){
+                li.classList.remove('active');
+            }
+            item.classList.add('active');
+        });
+    }
+}
 
 // Scroll to anchor ID using scrollTO event
 
@@ -96,12 +109,16 @@ for (let anchor of anchors) {
     });
 }
 // Set sections as active
-window.addEventListener('scroll',function sectionActivator() {
+window.addEventListener('scroll', function sectionActivator() {
     const sec1 = Math.abs(document.getElementById('section1').getBoundingClientRect().top);
     const sec2 = Math.abs(document.getElementById('section2').getBoundingClientRect().top);
     const sec3 = Math.abs(document.getElementById('section3').getBoundingClientRect().top);
     const sec4 = Math.abs(document.getElementById('section4').getBoundingClientRect().top);
     const min = Math.min(sec1, sec2, sec3, sec4);
+    const li = document.querySelector('li.active');
+    if(li!==null){
+        li.classList.remove('active');
+    }
 
     switch (min) {
         case sec1:
@@ -109,24 +126,30 @@ window.addEventListener('scroll',function sectionActivator() {
             document.getElementById('section2').classList.remove("your-active-class");
             document.getElementById('section3').classList.remove("your-active-class");
             document.getElementById('section4').classList.remove("your-active-class");
+            this.document.querySelectorAll('li')[0].classList.add('active');
             break;
         case sec2:
             document.getElementById('section1').classList.remove("your-active-class");
             document.getElementById('section2').classList.add("your-active-class");
             document.getElementById('section3').classList.remove("your-active-class");
             document.getElementById('section4').classList.remove("your-active-class");
+            this.document.querySelectorAll('li')[1].classList.add('active');
             break;
         case sec3:
             document.getElementById('section1').classList.remove("your-active-class");
             document.getElementById('section2').classList.remove("your-active-class");
             document.getElementById('section3').classList.add("your-active-class");
             document.getElementById('section4').classList.remove("your-active-class");
+            this.document.querySelectorAll('li')[2].classList.add('active');
             break;
         case sec4:
             document.getElementById('section1').classList.remove("your-active-class");
             document.getElementById('section2').classList.remove("your-active-class");
             document.getElementById('section3').classList.remove("your-active-class");
             document.getElementById('section4').classList.add("your-active-class");
+            this.document.querySelectorAll('li')[3].classList.add('active');
             break;
     }
 });
+
+document.getElementById('navbar__list').addEventListener('click', NavBarActive());
