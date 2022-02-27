@@ -1,6 +1,6 @@
 # **Landing Page Project**
 
-### Instructions:
+### Project description:
 
 ###### The project is a simple webpage that is developed using html and JS and the DOM to manipulate the webpage.
 
